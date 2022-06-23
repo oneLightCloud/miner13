@@ -1,0 +1,56 @@
+<wxs module="util" src="../util.wxs" />
+<view class="container">
+  <view class="form-group">
+    <view class="form-cell">
+      <view class="form-cell_title">所期车厢温度</view>
+      <input class="form-cell_input" placeholder="请输入所期车厢温度（10字以内）" placeholder-class="form-cell_title-placeholder"
+        bindinput="onTitleInput" value="{{title}}" />
+    </view>
+    <view class="form-cell">
+      <view class="form-cell_title">所期车厢湿度</view>
+      <input class="form-cell_input" placeholder="请输入所期车厢湿度（10字以内）" placeholder-class="form-cell_title-placeholder"
+        bindinput="onDescInput" value="{{desc}}" />
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline">
+      <view class="upload-text" bindtap="addFile">
+        {{(files.length === 0 ? "点击添加图片" : util.filterStr(fileName, 15))}}</view>
+        <view >需是关于温湿度建议的相关图片</view>
+      <image class="upload" bindtap="addFile" src="../../images/add/next.png"></image>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-cell inline">
+
+  </view>
+    <view class="form-cell inline">
+      <view>是否设置定时提醒</view>
+      <picker class="option" bindchange="onChooseFreq" range="{{freqOptions}}">
+        {{freqOptions[freq]}}
+      </picker>
+
+      <view wx:if="{{tt=='是'}}">
+      <view wx:for='{{length}}' wx:key="index">
+      <button type='primary' class='btn'>queding{{a[index]}}</button>
+      </view>
+      </view>
+
+      <view wx:if="{{tt=='否'}}">
+      <view wx:for='{{length}}' wx:key="index">
+      <button type='primary' class='btn'>queding{{b[index]}}</button>
+      </view>
+      </view>
+
+      <picker class="selector" bindchange="onChooseFreq" range="{{freqOptions}}">
+        <image class="selector" src="../../images/add/next.png" />
+        {{DaoJiShi}}
+      </picker>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="reset" bindtap="resetTodo">重置</view>
+    <view class="save" bindtap="saveTodo">保存</view>
+  </view>
+</view>
